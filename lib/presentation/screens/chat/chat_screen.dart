@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yes_no_maybe/presentation/widgets/chat/message_bubbles.dart';
+import 'package:yes_no_maybe/presentation/widgets/chat/others_message_bubbles.dart';
+import 'package:yes_no_maybe/presentation/widgets/chat/own_message_bubbles.dart';
+import 'package:yes_no_maybe/presentation/widgets/shared/message_field_box.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -33,13 +35,15 @@ class _ChatView extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: 100,
+                itemCount: 50,
                 itemBuilder: (context, index) {
-                  return const MessageBubble();
+                  return (index % 2 == 0)
+                    ? const OthersMessageBubble()
+                    : const OwnMessageBubble();
                 },
               )
             ),
-            Text('Mundo')
+            const MessageFieldBox()
           ],
         ),
       ),
